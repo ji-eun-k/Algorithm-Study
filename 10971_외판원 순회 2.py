@@ -6,7 +6,6 @@ city = [list(map(int, input().split())) for _ in range(N)]
 min_cost = 10**9
 visited = [False]*(N+1)
 
-
 def tsp(start, now, cnt, cost):
     global min_cost
 
@@ -20,8 +19,6 @@ def tsp(start, now, cnt, cost):
             visited[j] = True
             tsp(start, j, cnt+1, cost+city[now][j])
             visited[j] = False
-
-
 
 visited[0] = True
 tsp(0, 0, 1, 0)
