@@ -1,4 +1,6 @@
 import sys
+
+def 
 input = sys.stdin.readline
 N = int(input())
 tree = {}
