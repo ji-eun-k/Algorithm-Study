@@ -1,6 +1,7 @@
 import sys
 input = sys.stdin.readline
-#다시 짜기 가장먼곳 찾고, 그 먼곳에서 다시 돌리기임!!
+
+# 가장 긴 점 찾고 -> 이 점 기준으로 다시 탐색! -> 다시 풀기
 
 def cal_tree(start: int, cnt:int):
     global tree

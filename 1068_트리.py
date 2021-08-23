@@ -10,6 +10,7 @@ for i in range(n): # 트리 생성
     else:
         tree[arr[i]]=[i]
 
+print(tree)
 check = []
 if -1 in tree.keys(): # 루트가 남아 있는지 확인
     check.append(-1)

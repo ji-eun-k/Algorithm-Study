@@ -21,6 +21,7 @@ for i in range(N):
         jong.append(int(input()))
     else:
         seok.append(int(input()))
+
 #이분 탐색은 정렬되어 있는 상태에서 가능
 jong.sort()
 seok.sort()
