@@ -3,16 +3,26 @@ input = sys.stdin.readline
 
 # 가장 긴 점 찾고 -> 이 점 기준으로 다시 탐색! -> 다시 풀기
 
-def cal_tree(start: int, cnt:int):
-    global tree
-    global max_tree
-    global visited
-    for now_tree in tree[start]:
-        if not visited[now_tree[0]]:
-            visited[now_tree[0]] = 1
-            cal_tree(now_tree[0], now_tree[1]+cnt)
-
-    max_tree = max(max_tree, cnt)
+def find_long(start):
+    max_length, max_start = 0, 0
+    visited = [0]*(N+1)
+    q = [(start, 0)]
+    visited[start] = 1
+    end = 0
+    my_max = 0
+    while q:
+        ct, cw = q[-1]
+        if cw > my_max :
+            end = ct
+            my_max = cw
+        for next, weight in tree[ct]:
+            if not visited[next]:
+                q.append((next, cw+weight))
+                visited[next] = 1
+                break
+        else:
+            q.pop()
+    return end, my_max
 
 
 N = int(input())
@@ -22,12 +32,7 @@ for _ in range(N-1):
     tree[a].append([b, weight])
     tree[b].append([a, weight])
 
+end, _ = find_long(1)
+_, my_max = find_long(end)
 
-max_tree = 0
-for i in range(1, N):
-    if len(tree[i]) == 1:
-        visited = [0]*(N+1)
-        visited[i] = 1
-        cal_tree(i, 0)
-
-print(max_tree)
+print(my_max)
