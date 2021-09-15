@@ -17,12 +17,12 @@ opt = ''
 isC = False
 for c in formula:
     if c.isdigit():
-        if opt :
+        if opt:
             temp += c
-        else :
+        else:
             answer += c
-    else :
-        if opt and opt!='C' :
+    else:
+        if opt and opt != 'C':
             answer = cal(int(answer), int(temp), opt)
             temp = ''
 
