@@ -1,4 +1,5 @@
-
+# 늑대와 올바른 단어
+# 스택이 차있고 f / w 끊어줌, 슬라이싱으로 확인!! 
 def wolf(word):
     if word[0] != 'w':
         return 0

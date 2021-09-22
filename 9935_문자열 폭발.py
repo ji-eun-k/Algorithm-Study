@@ -7,7 +7,7 @@ stack = []
 
 for char in sentence:
     stack.append(char)
-    if char == bomb_sen[-1] and len(stack) >= len(bomb_sen) and ''.join(stack[-len(bomb_sen):]) == bomb_sen :
+    if char == bomb_sen[-1] and len(stack) >= len(bomb_sen) and ''.join(stack[-len(bomb_sen):]) == bomb_sen:
         cnt = 0
         while cnt < len(bomb_sen):
             stack.pop()
