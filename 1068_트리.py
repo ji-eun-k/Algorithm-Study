@@ -10,7 +10,6 @@ for i in range(n): # 트리 생성
     else:
         tree[arr[i]]=[i]
 
-print(tree)
 check = []
 if -1 in tree.keys(): # 루트가 남아 있는지 확인
     check.append(-1)
@@ -20,6 +19,6 @@ while check: # 트리를 타고 들어가면서 자식이 없으면(key가 없�
     now = check.pop()
     if now not in tree.keys():
         answer +=1
-    else :
+    else:
         check.extend(tree[now])
 print(answer)
