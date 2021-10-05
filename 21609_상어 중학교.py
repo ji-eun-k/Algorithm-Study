@@ -1,5 +1,4 @@
 from collections import deque
-from copy import deepcopy
 dy = [-1, 0, 1, 0]
 dx = [0, 1, 0, -1]
 
@@ -8,10 +7,11 @@ def find_big_block():
     block_r = -1
     block_c = -1
     block_size = -1
-    block_rainbow = 0
+    block_rainbow = -1
     for i in range(n):
         for j in range(n):
-            if m >= grid[i][j] >= 1:
+            if grid[i][j] >= 1:
+
                 temp_r, temp_c, temp_size, temp_rainbow = count_block(i, j)
 
                 if temp_size > block_size:
@@ -21,13 +21,17 @@ def find_big_block():
                     block_c = temp_c
                 elif temp_size == block_size:
                     if block_rainbow < temp_rainbow:
+                        block_size = temp_size
                         block_rainbow = temp_rainbow
                         block_r = temp_r
                         block_c = temp_c
-                    elif block_size == temp_rainbow:
+                    elif block_rainbow == temp_rainbow:
                         if block_r < temp_r:
                             block_r = temp_r
                             block_c = temp_c
+                        elif block_r == temp_r:
+                            if block_c < temp_c:
+                                block_c = temp_c
 
     return block_r, block_c, block_size
 
@@ -58,7 +62,10 @@ def count_block(r, c):
                         gizoon_c = nc
                     elif gizoon_r == nr and gizoon_c > nc:
                         gizoon_c = nc
-    return gizoon_r, gizoon_c, my_size, rainbow
+    if my_size >= 2 :
+        return gizoon_r, gizoon_c, my_size, rainbow
+    else :
+        return -1, -1, -1, -1
 
 
 def delete_block(r, c):
@@ -100,10 +107,12 @@ def gravity():
 
 
 def rotate():
-    temp = deepcopy(grid)
+    global grid
+    temp = [[0]*n for _ in range(n)]
     for i in range(n):
         for j in range(n):
-            grid[n-1-j][i] = temp[i][j]
+            temp[n-1-j][i] = grid[i][j]
+    grid = temp
 
 
 n, m = map(int, input().split())
@@ -119,6 +128,5 @@ while True:
     gravity()
     rotate()
     gravity()
-
 
 print(answer)
