@@ -10,7 +10,7 @@ def solve(answer, si, sj, start, dire):
     if si < 0 or sj < 0 or si >= n or sj >= n:
         return
 
-    if desert[maps[si][sj]]: # 이미 먹은 곳곳
+    if desert[maps[si][sj]]: # 이미 먹은 곳
         return
     else:
         desert[maps[si][sj]] = 1
