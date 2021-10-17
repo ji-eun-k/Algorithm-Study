@@ -17,7 +17,7 @@ for tc in range(1, int(input())+1):
     ans = 0
     while q:
         w, v = heapq.heappop(q)
-        if team[v] :
+        if team[v]:
             continue
         team[v] = 1
         ans += w
