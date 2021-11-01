@@ -1,48 +1,33 @@
-data = list(input())
-answer = 0
-num = {'H':1, 'C':12, 'O':16}
+chemi = {'H': 1, 'C': 12, 'O': 16}
+data = input()
+idx = 0
 stack = []
-# 스택에 괄호 집어 넣고 빼고 ?? 숫자 몇개인지도 같이넣고
-# 만약에 숫자 없으면 ?..
 
-i = len(data) - 1
-while i >= 0:
-    print(stack)
-    temp = data[i]
-    if temp.isdecimal():
-        stack.append(int(temp))
-    elif temp == ')':
-        if stack and int == type(stack[-1]):
-            stack.append(temp)
-            i -= 1
-            continue
-
-        stack.append(1)
-        stack.append(temp)
-
-    elif temp == '(':
+# 덧셈 + 괄호 있는 계산기 로직과 비슷함
+while idx < len(data):
+    # 여는 괄호일 경우 일단 stack에 집어 넣음
+    if data[idx] == '(':
+        stack.append('(')
+    # 닫는 괄호일 경우
+    elif data[idx] == ')':
+        # 여는 괄호가 나올 때 까지 pop 해주며 temp_sum에 저장
         temp_sum = 0
         while True:
-            temp2 = stack.pop()
-            if temp2 == ')':
-                answer += temp_sum * stack.pop()
+            temp = stack.pop()
+            if temp == '(':
+                stack.append(temp_sum)
                 break
-            if type(stack[-1]) == int:
-                temp_sum += num[temp2] * stack.pop()
-
-            else:
-                temp_sum += num[temp2]
+            temp_sum += temp
+        # 만약 여는 괄호 뒤에 숫자가 있으면 stack top에 저장된 괄호 안의 연산 값에 곱하기
+        if idx + 1 < len(data) and data[idx+1].isdecimal():
+            idx += 1
+            stack.append(stack.pop()*int(data[idx]))
+    # 만약 숫자일 경우 바로 앞에 있는 원소에 곱해줌
+    elif data[idx].isdecimal():
+        stack.append(stack.pop()*int(data[idx]))
+    # 원소일 경우 숫자로 바꿔줌
     else:
-        stack.append(temp)
-    i -= 1
+        stack.append(chemi[data[idx]])
+    idx += 1
 
-while stack:
-    a = stack.pop()
-
-    if stack and type(stack[-1]) == int:
-        answer += num[a] * stack.pop()
-    else:
-        answer += num[a]
-
-
-print(answer)
+print(sum(stack))
