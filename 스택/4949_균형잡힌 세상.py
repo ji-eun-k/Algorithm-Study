@@ -6,7 +6,7 @@ while True:
     if words == '.':
         break
     stack = []
-    isbal = True
+    isBal = True
 
     for word in words:
         if word == '(' or word == '[':
@@ -16,18 +16,17 @@ while True:
             if len(stack) > 0 and stack[-1] == '(':
                 stack.pop()
             else :
-                isbal = False
+                isBal = False
                 break
 
-        elif word ==']':
+        elif word == ']':
             if len(stack) > 0 and stack[-1] == '[':
                 stack.pop()
             else :
-                isbal = False
+                isBal = False
                 break
 
-
-    if isbal and not stack:
+    if isBal and not stack:
         print('yes')
     else:
         print('no')
